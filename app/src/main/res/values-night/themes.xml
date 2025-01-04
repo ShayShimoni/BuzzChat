@@ -1,7 +1,23 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Base.Theme.BuzzChat" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/blue80</item>
+        <item name="colorPrimaryVariant">@color/blue40</item>
+        <item name="colorOnPrimary">@color/blue90</item>
+
+        <item name="colorSecondary">@color/yellow80</item>
+        <item name="colorSecondaryVariant">@color/yellow40</item>
+        <item name="colorOnSecondary">@color/yellow90</item>
+
+        <item name="colorTertiary">@color/purple80</item>
+        <item name="colorOnTertiary">@color/purple90</item>
+
+        <item name="android:colorBackground">@color/neutral10</item>
+        <item name="colorSurface">@color/neutral10</item>
+        <item name="colorOnSurface">@color/neutral80</item>
+
+        <item name="colorError">@color/red80</item>
+        <item name="colorOnError">@color/red90</item>
+
+        <item name="colorOutline">@color/neutralVariant80</item>
     </style>
 </resources>

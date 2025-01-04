@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="blue20">#004BA0</color>
+    <color name="blue40">#1976D2</color>
+    <color name="blue80">#90CAF9</color>
+    <color name="blue90">#BBDEFB</color>
+    <color name="blue100">#E3F2FD</color>
+
+    <!-- Secondary Colors -->
+    <color name="yellow20">#C79100</color>
+    <color name="yellow40">#FFC107</color>
+    <color name="yellow80">#FFE082</color>
+    <color name="yellow90">#FFF8E1</color>
+    <color name="yellow100">#FFFFF0</color>
+
+    <!-- Tertiary Colors -->
+    <color name="purple20">#4A0072</color>
+    <color name="purple40">#6A1B9A</color>
+    <color name="purple80">#E1BEE7</color>
+    <color name="purple90">#F3E5F5</color>
+    <color name="purple100">#FAF2FC</color>
+
+    <!-- Neutral Colors -->
+    <color name="neutral10">#121212</color>
+    <color name="neutral30">#303030</color>
+    <color name="neutral80">#CAC4D0</color>
+    <color name="neutral90">#E7E0EC</color>
+    <color name="neutral100">#FFFFFF</color>
+
+    <!-- Error Colors -->
+    <color name="red20">#8A1E1E</color>
+    <color name="red40">#B3261E</color>
+    <color name="red80">#EF9A9A</color>
+    <color name="red90">#F9DEDC</color>
+    <color name="red100">#FFFFFF</color>
+
+    <!-- Outline Colors -->
+    <color name="neutralVariant30">#49454F</color>
+    <color name="neutralVariant60">#79747E</color>
+    <color name="neutralVariant80">#BDBDBD</color>
 </resources>
