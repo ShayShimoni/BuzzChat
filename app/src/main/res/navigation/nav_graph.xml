@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.msapps.buzzchat.HomeFragment"
+        android:name="com.msapps.buzzchat.ui.fragments.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home"/>
 </navigation>
