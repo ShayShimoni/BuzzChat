@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -58,4 +59,8 @@ dependencies {
     implementation(libs.koin.android)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 }
