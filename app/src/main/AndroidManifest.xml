@@ -15,7 +15,7 @@
         android:theme="@style/Theme.BuzzChat">
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.BuzzChat">
             <intent-filter>
