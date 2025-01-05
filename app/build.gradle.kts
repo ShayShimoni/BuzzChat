@@ -1,7 +1,21 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.services)
+}
+
+val environment by extra("environment")
+
+val firebaseProperties = Properties().apply {
+    val propertiesFile = rootProject.file("secrets/firebase.properties")
+    if (propertiesFile.exists()) {
+        load(FileInputStream(propertiesFile))
+    } else {
+        throw GradleException("Properties file not found: ${propertiesFile.absolutePath}")
+    }
 }
 
 android {
@@ -37,6 +51,29 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+
+    flavorDimensions += listOf(environment)
+
+    productFlavors {
+        create("develop") {
+            dimension = environment
+
+            buildConfigField("String","FIREBASE_AUTH_BASE_URL", firebaseProperties.getProperty("authBaseUrl"))
+            buildConfigField("String","FIREBASE_API_KEY", firebaseProperties.getProperty("apiKey"))
+        }
+        create("staging") {
+            dimension = environment
+
+            buildConfigField("String","FIREBASE_AUTH_BASE_URL", firebaseProperties.getProperty("authBaseUrl"))
+            buildConfigField("String","FIREBASE_API_KEY", firebaseProperties.getProperty("apiKey"))
+        }
+        create("production") {
+            dimension = environment
+
+            buildConfigField("String","FIREBASE_AUTH_BASE_URL", firebaseProperties.getProperty("authBaseUrl"))
+            buildConfigField("String","FIREBASE_API_KEY", firebaseProperties.getProperty("apiKey"))
+        }
     }
 }
 
