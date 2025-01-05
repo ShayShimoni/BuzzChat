@@ -3,11 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/HomeFragment">
+    app:startDestination="@id/LoginFragment">
 
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.msapps.buzzchat.home.ui.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.msapps.buzzchat.auth.ui.LoginFragment"
+        android:label="@string/login_fragment_label"
+        tools:layout="@layout/fragment_login" />
 </navigation>
