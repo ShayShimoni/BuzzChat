@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.ui.fragments
+package com.msapps.buzzchat.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

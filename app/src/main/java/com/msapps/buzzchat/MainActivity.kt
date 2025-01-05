@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.ui.activities
+package com.msapps.buzzchat
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,7 +8,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.msapps.buzzchat.R
 import com.msapps.buzzchat.databinding.ActivityMainBinding
 
 class MainActivity: AppCompatActivity() {

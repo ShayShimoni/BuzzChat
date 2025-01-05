@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.di
+package com.msapps.buzzchat.core.di
 
 import org.koin.core.module.Module
 
