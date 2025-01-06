@@ -1,24 +1,37 @@
 <resources>
     <style name="Base.Theme.BuzzChat" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--Fallback Colors-->
         <item name="colorPrimary">@color/blue40</item>
         <item name="colorPrimaryVariant">@color/blue20</item>
         <item name="colorOnPrimary">@color/blue100</item>
-
         <item name="colorSecondary">@color/yellow40</item>
         <item name="colorSecondaryVariant">@color/yellow20</item>
         <item name="colorOnSecondary">@color/yellow100</item>
-
         <item name="colorTertiary">@color/purple40</item>
         <item name="colorOnTertiary">@color/purple100</item>
-
         <item name="android:colorBackground">@color/neutral100</item>
         <item name="colorSurface">@color/neutral100</item>
         <item name="colorOnSurface">@color/neutral10</item>
-
         <item name="colorError">@color/red40</item>
         <item name="colorOnError">@color/red100</item>
-
         <item name="colorOutline">@color/neutralVariant60</item>
+
+        <!--TypeFace-->
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.BuzzChatTheme.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.BuzzChatTheme.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.BuzzChatTheme.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.BuzzChatTheme.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.BuzzChatTheme.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.BuzzChatTheme.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.BuzzChatTheme.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.BuzzChatTheme.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.BuzzChatTheme.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.BuzzChatTheme.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.BuzzChatTheme.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.BuzzChatTheme.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.BuzzChatTheme.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.BuzzChatTheme.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.BuzzChatTheme.LabelSmall</item>
     </style>
 
     <style name="Theme.BuzzChat" parent="Base.Theme.BuzzChat" />
