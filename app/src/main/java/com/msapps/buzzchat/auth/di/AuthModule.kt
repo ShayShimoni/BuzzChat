@@ -1,10 +1,12 @@
 package com.msapps.buzzchat.auth.di
 
+import android.content.Context
 import com.msapps.buzzchat.BuildConfig
 import com.msapps.buzzchat.auth.api.PhoneAuthApiImpl
 import com.msapps.buzzchat.auth.api.abstractions.PhoneAuthApi
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepositoryImpl
 import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
+import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
 import com.msapps.buzzchat.auth.ui.LoginFragmentViewModel
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -48,6 +50,10 @@ val authModule = module {
 
     single<PhoneAuthRepository> {
         PhoneAuthRepositoryImpl(get<PhoneAuthApi>())
+    }
+
+    single<TokenSharedPreferences> {
+        TokenSharedPreferences(get<Context>())
     }
 
     viewModel<LoginFragmentViewModel> {
