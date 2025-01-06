@@ -6,7 +6,7 @@ import com.msapps.buzzchat.auth.models.requests.VerifyOtpRequest
 import com.msapps.buzzchat.auth.models.responses.CheckUserResponse
 import com.msapps.buzzchat.auth.models.responses.SendOtpResponse
 import com.msapps.buzzchat.auth.models.responses.VerifyOtpResponse
-import com.msapps.buzzchat.core.utils.Result
+import com.msapps.buzzchat.utils.Result
 
 interface PhoneAuthRepository {
     suspend fun sendOtp(request: SendOtpRequest): Result<SendOtpResponse>

@@ -3,7 +3,6 @@ package com.msapps.buzzchat
 import android.app.Application
 import android.os.Build
 import com.google.android.material.color.DynamicColors
-import com.msapps.buzzchat.core.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

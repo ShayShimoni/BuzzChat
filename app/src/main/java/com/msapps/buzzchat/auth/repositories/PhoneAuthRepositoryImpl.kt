@@ -8,7 +8,7 @@ import com.msapps.buzzchat.auth.models.responses.CheckUserResponse
 import com.msapps.buzzchat.auth.models.responses.SendOtpResponse
 import com.msapps.buzzchat.auth.models.responses.VerifyOtpResponse
 import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
-import com.msapps.buzzchat.core.utils.Result
+import com.msapps.buzzchat.utils.Result
 import retrofit2.HttpException
 
 class PhoneAuthRepositoryImpl(
