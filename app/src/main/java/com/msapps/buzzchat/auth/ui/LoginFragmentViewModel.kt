@@ -3,46 +3,56 @@ package com.msapps.buzzchat.auth.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.msapps.buzzchat.auth.models.requests.CheckUserRequest
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
+import com.msapps.buzzchat.auth.models.responses.SendOtpResponse
 import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
+import com.msapps.buzzchat.utils.Constants
 import com.msapps.buzzchat.utils.Result
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 
 class LoginFragmentViewModel(
     private val phoneAuthRepository: PhoneAuthRepository
 ): ViewModel() {
 
-    companion object {
-        private val TAG = LoginFragmentViewModel::class.java.simpleName
-    }
+    private val _sendOtpStatus = MutableStateFlow(SendOtpResponse(""))
+    val sendOtpStatus = _sendOtpStatus.asStateFlow()
+
+    private val _sharedFlow = MutableSharedFlow<Throwable>()
+    val sharedFlow = _sharedFlow.asSharedFlow()
 
     fun sendOtp(request: SendOtpRequest) {
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = phoneAuthRepository.sendOtp(request)) {
                 is Result.Success -> {
-                    Log.i(TAG, "sendOtp: ${result.data}")
+                    Log.i(this@LoginFragmentViewModel::class.simpleName, "sendOtp: ${result.data}")
+                    _sendOtpStatus.emit(result.data)
                 }
 
                 is Result.Failure -> {
-                    Log.e(TAG, "sendOtp: ${result.error.message}")
+                    Log.e(
+                        this@LoginFragmentViewModel::class.simpleName,
+                        "sendOtp: ${result.error.message}"
+                    )
+                    _sharedFlow.emit(result.error)
                 }
             }
         }
     }
 
-    fun checkUser(request: CheckUserRequest) {
-        viewModelScope.launch(Dispatchers.IO) {
-            when (val result = phoneAuthRepository.checkUser(request)) {
-                is Result.Success -> {
-                    Log.i(TAG, "checkUser: ${result.data}")
-                }
-
-                is Result.Failure -> {
-                    Log.e(TAG, "checkUser: ${result.error.message}")
-                }
-            }
-        }
+    fun verifyPhoneNumber(phoneNumber: String): Boolean {
+        return Pattern.compile(Constants.PHONE_NUMBER_REGEX).matcher(phoneNumber).matches()
     }
+
+    fun checkForNumberPrefix(phoneNumber: String) = if (phoneNumber.startsWith("0") && phoneNumber.length == 10) {
+        phoneNumber.removePrefix("0")
+    } else {
+        phoneNumber
+    }
+
 }
