@@ -14,4 +14,5 @@
     <!-- Error -->
     <string name="error_msg">An unexpected error occurred while processing your request. Please try again later.\n\nCause: %s</string>
     <string name="error_phone_number">Phone number isn\'t valid</string>
+    <string name="error_empty_phone_number">You have to enter a number</string>
 </resources>

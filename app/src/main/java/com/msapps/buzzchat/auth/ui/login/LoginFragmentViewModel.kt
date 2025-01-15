@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.auth.ui
+package com.msapps.buzzchat.auth.ui.login
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,9 +10,7 @@ import com.msapps.buzzchat.utils.Constants
 import com.msapps.buzzchat.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
@@ -20,8 +18,8 @@ class LoginFragmentViewModel(
     private val phoneAuthRepository: PhoneAuthRepository
 ): ViewModel() {
 
-    private val _sendOtpStatus = MutableStateFlow(SendOtpResponse(""))
-    val sendOtpStatus = _sendOtpStatus.asStateFlow()
+    private val _sendOtpStatus = MutableSharedFlow<SendOtpResponse>()
+    val sendOtpStatus = _sendOtpStatus.asSharedFlow()
 
     private val _sharedFlow = MutableSharedFlow<Throwable>()
     val sharedFlow = _sharedFlow.asSharedFlow()

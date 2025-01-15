@@ -9,11 +9,34 @@
         android:id="@+id/HomeFragment"
         android:name="com.msapps.buzzchat.home.ui.HomeFragment"
         android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.msapps.buzzchat.auth.ui.LoginFragment"
+        android:name="com.msapps.buzzchat.auth.ui.login.LoginFragment"
         android:label="@string/login_fragment_label"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_LoginFragment_to_OtpFragment"
+            app:destination="@id/OtpFragment">
+
+            <argument
+                android:name="sessionInfo"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/OtpFragment"
+        android:name="com.msapps.buzzchat.auth.ui.otp.OtpFragment"
+        android:label="OtpFragment">
+
+        <argument
+            android:name="sessionInfo"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
 </navigation>

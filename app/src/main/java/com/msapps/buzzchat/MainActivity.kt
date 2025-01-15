@@ -36,6 +36,15 @@ class MainActivity: AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        when (navController.currentDestination?.id) {
+            R.id.LoginFragment -> menu?.findItem(R.id.action_settings)?.isVisible = false
+            R.id.HomeFragment -> menu?.findItem(R.id.action_settings)?.isVisible = true
+        }
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> true

@@ -7,7 +7,7 @@ import com.msapps.buzzchat.auth.api.abstractions.PhoneAuthApi
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepositoryImpl
 import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
 import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
-import com.msapps.buzzchat.auth.ui.LoginFragmentViewModel
+import com.msapps.buzzchat.auth.ui.login.LoginFragmentViewModel
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request

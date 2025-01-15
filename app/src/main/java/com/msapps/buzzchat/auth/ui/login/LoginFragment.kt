@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.auth.ui
+package com.msapps.buzzchat.auth.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.msapps.buzzchat.R
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
 import com.msapps.buzzchat.databinding.FragmentLoginBinding
-import com.msapps.buzzchat.extensions.hideToolbar
 import com.msapps.buzzchat.extensions.showDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -35,13 +35,9 @@ class LoginFragment: Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        hideToolbar()
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.root.viewTreeObserver.removeOnGlobalLayoutListener(null)
         _binding = null
     }
 
@@ -56,7 +52,11 @@ class LoginFragment: Fragment() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sendOtpStatus.collectLatest {
-                    // TODO: Navigate to otp verification screen
+                    withContext(Dispatchers.Main) {
+                        if (findNavController().currentDestination?.id == R.id.LoginFragment) {
+                            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOtpFragment(it.sessionInfo))
+                        }
+                    }
                 }
             }
         }
@@ -79,7 +79,11 @@ class LoginFragment: Fragment() {
                 val fullPhoneNumber = "+${binding.countryCodePicker.selectedCountryCode}${viewModel.checkForNumberPrefix(phoneNumber)}"
                 viewModel.sendOtp(SendOtpRequest(fullPhoneNumber))
             } else {
-                binding.tfPhoneNumber.error = getString(R.string.error_phone_number)
+                if (phoneNumber.isNotEmpty()) {
+                    binding.tfPhoneNumber.error = getString(R.string.error_phone_number)
+                } else {
+                    binding.tfPhoneNumber.error = getString(R.string.error_empty_phone_number)
+                }
             }
         }
 
@@ -99,7 +103,9 @@ class LoginFragment: Fragment() {
 
         // Scroll down when keyboard opens.
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
-            binding.root.arrowScroll(View.FOCUS_DOWN)
+            if (_binding?.tfPhoneNumber?.editText?.isFocused == true) {
+                _binding?.root?.arrowScroll(View.FOCUS_DOWN)
+            }
         }
     }
 
