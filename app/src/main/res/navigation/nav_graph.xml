@@ -14,12 +14,16 @@
     <fragment
         android:id="@+id/LoginFragment"
         android:name="com.msapps.buzzchat.auth.ui.login.LoginFragment"
-        android:label="@string/login_fragment_label"
+        android:label=""
         tools:layout="@layout/fragment_login">
 
         <action
             android:id="@+id/action_LoginFragment_to_OtpFragment"
-            app:destination="@id/OtpFragment">
+            app:destination="@id/OtpFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
 
             <argument
                 android:name="sessionInfo"
@@ -31,7 +35,7 @@
     <fragment
         android:id="@+id/OtpFragment"
         android:name="com.msapps.buzzchat.auth.ui.otp.OtpFragment"
-        android:label="OtpFragment">
+        android:label="">
 
         <argument
             android:name="sessionInfo"

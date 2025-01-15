@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.msapps.buzzchat.BuildConfig
 import com.msapps.buzzchat.R
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
 import com.msapps.buzzchat.databinding.FragmentLoginBinding
@@ -44,8 +45,13 @@ class LoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.countryCodePicker.resetToDefaultCountry()
         setupListeners()
         addObservers()
+
+        if (BuildConfig.DEBUG) {
+            binding.tfPhoneNumber.editText?.setText("0511111111")
+        }
     }
 
     private fun addObservers() {
