@@ -1,7 +1,6 @@
 package com.msapps.buzzchat.auth.api
 
 import com.msapps.buzzchat.BuildConfig
-import com.msapps.buzzchat.auth.api.abstractions.PhoneAuthApi
 import com.msapps.buzzchat.auth.models.requests.CheckUserRequest
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
 import com.msapps.buzzchat.auth.models.requests.VerifyOtpRequest

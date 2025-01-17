@@ -2,8 +2,8 @@ package com.msapps.buzzchat.auth.di
 
 import android.content.Context
 import com.msapps.buzzchat.BuildConfig
+import com.msapps.buzzchat.auth.api.PhoneAuthApi
 import com.msapps.buzzchat.auth.api.PhoneAuthApiImpl
-import com.msapps.buzzchat.auth.api.abstractions.PhoneAuthApi
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepositoryImpl
 import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
