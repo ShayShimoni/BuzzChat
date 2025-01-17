@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
 import com.msapps.buzzchat.auth.models.responses.SendOtpResponse
-import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
+import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
 import com.msapps.buzzchat.utils.Constants
 import com.msapps.buzzchat.utils.Result
 import kotlinx.coroutines.Dispatchers

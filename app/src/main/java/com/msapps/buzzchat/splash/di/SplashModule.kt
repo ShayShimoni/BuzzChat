@@ -1,6 +1,6 @@
 package com.msapps.buzzchat.splash.di
 
-import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
+import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
 import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
 import com.msapps.buzzchat.splash.ui.SplashActivityViewModel
 import org.koin.core.module.dsl.viewModel

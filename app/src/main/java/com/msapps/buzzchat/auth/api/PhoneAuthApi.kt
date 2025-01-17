@@ -1,4 +1,4 @@
-package com.msapps.buzzchat.auth.api.abstractions
+package com.msapps.buzzchat.auth.api
 
 import com.msapps.buzzchat.auth.models.requests.CheckUserRequest
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest

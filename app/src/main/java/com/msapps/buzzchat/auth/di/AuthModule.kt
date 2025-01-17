@@ -4,8 +4,8 @@ import android.content.Context
 import com.msapps.buzzchat.BuildConfig
 import com.msapps.buzzchat.auth.api.PhoneAuthApiImpl
 import com.msapps.buzzchat.auth.api.abstractions.PhoneAuthApi
+import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepositoryImpl
-import com.msapps.buzzchat.auth.repositories.abstractions.PhoneAuthRepository
 import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
 import com.msapps.buzzchat.auth.ui.login.LoginFragmentViewModel
 import okhttp3.HttpUrl
