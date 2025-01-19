@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.msapps.buzzchat.MainActivity
 import com.msapps.buzzchat.R
-import com.msapps.buzzchat.utils.Constants
+import com.msapps.buzzchat.auth.ui.AuthActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -31,8 +31,10 @@ class SplashActivity: AppCompatActivity() {
             viewModel.loginState.collectLatest { isLoggedIn ->
                 delay(2000)
                 withContext(Dispatchers.Main) {
-                    val intent = Intent(this@SplashActivity, MainActivity::class.java).apply {
-                        putExtra(Constants.EXTRA_IS_LOGGED_IN, isLoggedIn)
+                    val intent = if (isLoggedIn) {
+                        Intent(this@SplashActivity, MainActivity::class.java)
+                    } else {
+                        Intent(this@SplashActivity, AuthActivity::class.java)
                     }
                     startActivity(intent)
                     finish()

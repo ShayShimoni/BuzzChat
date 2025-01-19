@@ -1,4 +1,4 @@
-package com.msapps.buzzchat
+package com.msapps.buzzchat.auth.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -11,23 +11,24 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.msapps.buzzchat.databinding.ActivityMainBinding
+import com.msapps.buzzchat.R
+import com.msapps.buzzchat.databinding.ActivityAuthBinding
 
-class MainActivity: AppCompatActivity() {
+class AuthActivity: AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         setupListeners()
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph_main)
+        val navController = findNavController(R.id.nav_host_fragment_content_auth)
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph_auth)
         navController.graph = navGraph
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -38,6 +39,11 @@ class MainActivity: AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        menu?.findItem(R.id.action_settings)?.isVisible = false
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> true
@@ -46,7 +52,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.nav_host_fragment_content_auth)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }

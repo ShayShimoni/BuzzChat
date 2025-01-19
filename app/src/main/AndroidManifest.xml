@@ -30,6 +30,12 @@
             android:exported="true"
             android:theme="@style/Theme.BuzzChat"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".auth.ui.AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BuzzChat"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

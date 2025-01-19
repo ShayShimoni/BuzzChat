@@ -1,5 +1,6 @@
 package com.msapps.buzzchat.auth.ui.otp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.msapps.buzzchat.BuildConfig
+import com.msapps.buzzchat.MainActivity
 import com.msapps.buzzchat.R
 import com.msapps.buzzchat.auth.models.requests.VerifyOtpRequest
 import com.msapps.buzzchat.databinding.FragmentOtpBinding
-import com.msapps.buzzchat.extensions.safeNavigation
 import com.msapps.buzzchat.extensions.showErrorDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -70,7 +71,10 @@ class OtpFragment: Fragment() {
                             isNewUser = it.isNewUser
                         )
 
-                        navigateToHomeScreen()
+                        Intent(requireContext(), MainActivity::class.java).apply {
+                            startActivity(this)
+                            requireActivity().finish()
+                        }
                     }
                 }
             }
@@ -99,6 +103,7 @@ class OtpFragment: Fragment() {
                     binding.btnSend.callOnClick()
                     true
                 }
+
                 else -> false
             }
         }
@@ -116,12 +121,10 @@ class OtpFragment: Fragment() {
     }
 
     private fun navigateToHomeScreen() {
-        val navGraph = findNavController().navInflater.inflate(R.navigation.nav_graph)
+        val navGraph = findNavController().navInflater.inflate(R.navigation.nav_graph_main)
         navGraph.setStartDestination(R.id.HomeFragment)
         findNavController().graph = navGraph
 
-        safeNavigation(R.id.OtpFragment) {
-            findNavController().navigate(OtpFragmentDirections.actionOtpFragmentToHomeFragment())
-        }
+
     }
 }

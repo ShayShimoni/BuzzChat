@@ -6,12 +6,6 @@
     app:startDestination="@id/LoginFragment">
 
     <fragment
-        android:id="@+id/HomeFragment"
-        android:name="com.msapps.buzzchat.home.ui.HomeFragment"
-        android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
         android:id="@+id/LoginFragment"
         android:name="com.msapps.buzzchat.auth.ui.login.LoginFragment"
         android:label=""
@@ -42,8 +36,5 @@
             android:defaultValue=""
             app:argType="string" />
 
-        <action
-            android:id="@+id/action_OtpFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment"/>
     </fragment>
 </navigation>
