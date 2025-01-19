@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:scrollIndicators="none"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    tools:context=".auth.ui.otp.OtpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +21,62 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiOtpCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="48dp"
+            android:hint="Otp Code"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:textAppearance="?textAppearanceBodyLarge"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Send"
+            android:textAppearance="?textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tiOtpCode" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Didn't recieve the code?"
+            android:textAppearance="?textAppearanceBodyLarge"
+            app:layout_constraintBottom_toBottomOf="@+id/btnResend"
+            app:layout_constraintEnd_toStartOf="@+id/btnResend"
+            app:layout_constraintStart_toStartOf="@+id/btnSend"
+            app:layout_constraintTop_toTopOf="@+id/btnResend" />
+
+        <Button
+            android:id="@+id/btnResend"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Resend otp"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="?textAppearanceBodyLarge"
+            app:layout_constraintEnd_toEndOf="@+id/btnSend"
+            app:layout_constraintTop_toBottomOf="@id/btnSend" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

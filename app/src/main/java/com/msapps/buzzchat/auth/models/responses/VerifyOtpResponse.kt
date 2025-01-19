@@ -5,5 +5,6 @@ data class VerifyOtpResponse(
     val refreshToken: String,
     val expiresIn: String,
     val localId: String,
-    val isNewUser: Boolean
+    val isNewUser: Boolean,
+    val phoneNumber: String
 )

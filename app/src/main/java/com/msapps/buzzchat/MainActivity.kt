@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -18,17 +19,18 @@ class MainActivity: AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var isFromLogin = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
-        determineFlow()
-        adjustPaddingForKeyboardListener()
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        determineFlow(navController)
+        setupListeners(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,7 +60,27 @@ class MainActivity: AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun adjustPaddingForKeyboardListener() {
+    private fun determineFlow(navController: NavController) {
+        if (intent.getBooleanExtra(Constants.EXTRA_IS_LOGGED_IN, false)) {
+            resetNavGraphToHome(navController)
+        }
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    private fun setupListeners(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (navController.currentDestination?.id == R.id.OtpFragment) {
+                isFromLogin = true
+            }
+            if (destination.id == R.id.HomeFragment && isFromLogin) {
+                resetNavGraphToHome(navController)
+                appBarConfiguration = AppBarConfiguration(navController.graph)
+                setupActionBarWithNavController(navController, appBarConfiguration)
+                isFromLogin = false
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val keyboardHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             v.updatePadding(bottom = keyboardHeight + 32)
@@ -66,16 +88,9 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    private fun determineFlow() {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-
-        if (intent.getBooleanExtra(Constants.EXTRA_IS_LOGGED_IN, false)) {
-            val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-            navGraph.setStartDestination(R.id.HomeFragment)
-            navController.graph = navGraph
-        }
-
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+    private fun resetNavGraphToHome(navController: NavController) {
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        navGraph.setStartDestination(R.id.HomeFragment)
+        navController.graph = navGraph
     }
 }

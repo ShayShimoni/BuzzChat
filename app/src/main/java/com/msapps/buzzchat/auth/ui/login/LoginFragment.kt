@@ -15,7 +15,8 @@ import com.msapps.buzzchat.BuildConfig
 import com.msapps.buzzchat.R
 import com.msapps.buzzchat.auth.models.requests.SendOtpRequest
 import com.msapps.buzzchat.databinding.FragmentLoginBinding
-import com.msapps.buzzchat.extensions.showDialog
+import com.msapps.buzzchat.extensions.safeNavigation
+import com.msapps.buzzchat.extensions.showErrorDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -59,7 +60,7 @@ class LoginFragment: Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sendOtpStatus.collectLatest {
                     withContext(Dispatchers.Main) {
-                        if (findNavController().currentDestination?.id == R.id.LoginFragment) {
+                        safeNavigation(R.id.LoginFragment) {
                             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToOtpFragment(it.sessionInfo))
                         }
                     }
@@ -113,13 +114,5 @@ class LoginFragment: Fragment() {
                 _binding?.root?.arrowScroll(View.FOCUS_DOWN)
             }
         }
-    }
-
-    private fun showErrorDialog(t: Throwable) {
-        showDialog(
-            title = getString(R.string.error),
-            message = getString(R.string.error_msg, t.message),
-            positiveBtnText = getString(R.string.ok)
-        )
     }
 }

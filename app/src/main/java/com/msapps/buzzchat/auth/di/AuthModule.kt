@@ -6,8 +6,9 @@ import com.msapps.buzzchat.auth.api.PhoneAuthApi
 import com.msapps.buzzchat.auth.api.PhoneAuthApiImpl
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepositoryImpl
-import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
+import com.msapps.buzzchat.auth.storage.UserSharedPreferences
 import com.msapps.buzzchat.auth.ui.login.LoginFragmentViewModel
+import com.msapps.buzzchat.auth.ui.otp.OtpFragmentViewModel
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -52,11 +53,18 @@ val authModule = module {
         PhoneAuthRepositoryImpl(get<PhoneAuthApi>())
     }
 
-    single<TokenSharedPreferences> {
-        TokenSharedPreferences(get<Context>())
+    single<UserSharedPreferences> {
+        UserSharedPreferences(get<Context>())
     }
 
     viewModel<LoginFragmentViewModel> {
         LoginFragmentViewModel(get<PhoneAuthRepository>())
+    }
+
+    viewModel<OtpFragmentViewModel> {
+        OtpFragmentViewModel(
+            get<PhoneAuthRepository>(),
+            get<UserSharedPreferences>()
+        )
     }
 }

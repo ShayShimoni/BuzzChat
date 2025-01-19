@@ -42,5 +42,8 @@
             android:defaultValue=""
             app:argType="string" />
 
+        <action
+            android:id="@+id/action_OtpFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment"/>
     </fragment>
 </navigation>

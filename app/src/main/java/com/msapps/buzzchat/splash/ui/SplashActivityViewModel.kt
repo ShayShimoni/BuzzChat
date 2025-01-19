@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msapps.buzzchat.auth.models.requests.CheckUserRequest
 import com.msapps.buzzchat.auth.repositories.PhoneAuthRepository
-import com.msapps.buzzchat.auth.storage.TokenSharedPreferences
+import com.msapps.buzzchat.auth.storage.UserSharedPreferences
 import com.msapps.buzzchat.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SplashActivityViewModel(
     private val phoneAuthRepository: PhoneAuthRepository,
-    private val tokenSharedPreferences: TokenSharedPreferences
+    private val userSharedPreferences: UserSharedPreferences
 ): ViewModel() {
 
     private val _loginState = MutableStateFlow(false)
@@ -22,8 +22,9 @@ class SplashActivityViewModel(
 
     fun checkLoginStatus() {
         viewModelScope.launch(Dispatchers.IO) {
-            when(val result = phoneAuthRepository.checkUser(CheckUserRequest(tokenSharedPreferences.getIdToken()))) {
+            when(val result = phoneAuthRepository.checkUser(CheckUserRequest(userSharedPreferences.getIdToken()))) {
                 is Result.Success -> {
+                    userSharedPreferences.setIsLoggedIn(true)
                     _loginState.emit(true)
                 }
                 is Result.Failure -> {
