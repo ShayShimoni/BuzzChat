@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -25,13 +26,14 @@ class AuthActivity: AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        setupListeners()
 
         val navController = findNavController(R.id.nav_host_fragment_content_auth)
         val navGraph = navController.navInflater.inflate(R.navigation.nav_graph_auth)
         navController.graph = navGraph
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        setupListeners(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,7 +59,13 @@ class AuthActivity: AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun setupListeners() {
+    private fun setupListeners(navController: NavController) {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.otpSuccessFragment) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val keyboardHeight = insets.getInsets(WindowInsetsCompat.Type.ime()).bottom
             v.updatePadding(bottom = keyboardHeight + 32)

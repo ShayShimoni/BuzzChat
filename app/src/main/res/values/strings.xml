@@ -10,9 +10,17 @@
     <string name="no">No</string>
     <string name="cancel">Cancel</string>
     <string name="error">Error</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 
     <!-- Error -->
     <string name="error_msg">An unexpected error occurred while processing your request. Please try again later.\n\nCause: %s</string>
     <string name="error_phone_number">Phone number isn\'t valid</string>
     <string name="error_empty_phone_number">You have to enter a number</string>
+
+    <!-- Otp -->
+    <string name="otp_success_title">Great!</string>
+    <string name="otp_success_msg">You’re now verified and good to go.</string>
+    <string name="otp_error_title">That Didn\'t Work!</string>
+    <string name="otp_error_msg">Please check your OTP and retry.</string>
 </resources>

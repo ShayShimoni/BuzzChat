@@ -1,6 +1,5 @@
 package com.msapps.buzzchat.auth.ui.otp
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +13,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.msapps.buzzchat.BuildConfig
-import com.msapps.buzzchat.MainActivity
 import com.msapps.buzzchat.R
 import com.msapps.buzzchat.auth.models.requests.VerifyOtpRequest
 import com.msapps.buzzchat.databinding.FragmentOtpBinding
-import com.msapps.buzzchat.extensions.showErrorDialog
+import com.msapps.buzzchat.extensions.safeNavigation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -71,10 +69,9 @@ class OtpFragment: Fragment() {
                             isNewUser = it.isNewUser
                         )
 
-                        Intent(requireContext(), MainActivity::class.java).apply {
-                            startActivity(this)
-                            requireActivity().finish()
-                        }
+                        navigateToNextScreen(true)
+
+
                     }
                 }
             }
@@ -84,7 +81,7 @@ class OtpFragment: Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.eventsSharedFlow.collectLatest {
                     withContext(Dispatchers.Main) {
-                        showErrorDialog(it)
+                        navigateToNextScreen(false)
                     }
                 }
             }
@@ -120,11 +117,15 @@ class OtpFragment: Fragment() {
         }
     }
 
-    private fun navigateToHomeScreen() {
-        val navGraph = findNavController().navInflater.inflate(R.navigation.nav_graph_main)
-        navGraph.setStartDestination(R.id.HomeFragment)
-        findNavController().graph = navGraph
-
-
+    private fun navigateToNextScreen(isSuccess: Boolean) {
+        if (isSuccess) {
+          safeNavigation(R.id.OtpFragment) {
+              findNavController().navigate(R.id.action_OtpFragment_to_OtpSuccessFragment)
+          }
+        } else {
+            safeNavigation(R.id.OtpFragment) {
+                findNavController().navigate(R.id.action_OtpFragment_to_OtpFailureFragment)
+            }
+        }
     }
 }
